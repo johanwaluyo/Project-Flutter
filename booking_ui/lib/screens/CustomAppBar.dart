@@ -34,9 +34,13 @@ class CustomAppBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return BottomNavigationBar(
-      items: bottomBarItems,
-      type: BottomNavigationBarType.fixed,
+    return Material(
+        elevation: 15.0,
+        child: BottomNavigationBar(
+          currentIndex: 0,
+          items: bottomBarItems,
+          type: BottomNavigationBarType.shifting,
+      ),
     );
   }
 }

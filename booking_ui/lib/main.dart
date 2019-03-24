@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:washing/screens/CustomAppBar.dart';
-import 'package:washing/screens/CustomShaperClipper.dart';
+import 'package:booking/screens/CustomAppBar.dart';
+import 'package:booking/screens/CustomShaperClipper.dart';
+import 'package:booking/booking_list.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(MaterialApp(
@@ -11,23 +12,27 @@ void main() => runApp(MaterialApp(
 ));
 
 ThemeData appTheme = ThemeData(
-  primaryColor: Colors.lightBlue,
+  primaryColor: Colors.blue[400],
   fontFamily: 'Oxygen'
 );
 
-List<String> location = ['Tg Balai (TBK)','Batam (BTM)'];
+List<String> location = ['Tg Balai Karimun (TBK)','Batam (BTM)'];
 
 class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
       bottomNavigationBar: CustomAppBar(),
-      body: Column(
-          children: <Widget>[
-              HomeScreenTopPart(),
-              HomeScreenBottomPart,
-          ],
-        ),
+      body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+              children: <Widget>[
+                HomeScreenTopPart(),
+                HomeScreenBottomPart,
+                HomeScreenBottomPart,
+            ],
+          ),
+      ),
       /*
         ListView(
           scrollDirection: Axis.vertical,
@@ -44,6 +49,8 @@ class HomeScreen extends StatelessWidget{
 
 const TextStyle dropDownLabelStyle =TextStyle(color: Colors.white,fontSize: 16.0);
 const TextStyle dropDownMenuItemStyle =TextStyle(color: Colors.black,fontSize: 16.0);
+final Color firstColor = Colors.blue[300];
+final Color secondColor = Colors.blue[400];
 
 class HomeScreenTopPart extends StatefulWidget {
   @override
@@ -64,8 +71,8 @@ var isFlightSelected = true;
                 height: 330.0,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
-                    Colors.blue[300],
-                    Colors.blue[400]
+                    firstColor,
+                    secondColor
                   ])
                 ),
               child: Column(
@@ -126,7 +133,17 @@ var isFlightSelected = true;
                               suffixIcon: Material(
                                 elevation: 2.0,
                                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                                child: Icon(Icons.search,color: Colors.black,),
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.push(
+                                      context, 
+                                      MaterialPageRoute(
+                                        builder: (context) => BookingListing()
+                                      )
+                                    );
+                                  },
+                                  child: Icon(Icons.search,color: Colors.black,),
+                                  ),
                               ),
                               border: InputBorder.none,
                             ),
