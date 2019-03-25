@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:booking/main.dart';
 
 class CustomAppBar extends StatelessWidget{
   final List<BottomNavigationBarItem> bottomBarItems = [];
-
+  int index=0;
   final bottomNavigationBarItemStyle =TextStyle( fontStyle: FontStyle.normal,color: Colors.black);
 
   CustomAppBar(){
@@ -37,7 +38,10 @@ class CustomAppBar extends StatelessWidget{
     return Material(
         elevation: 15.0,
         child: BottomNavigationBar(
-          currentIndex: 0,
+          onTap: (int idx){
+            index=idx;
+          } ,
+          currentIndex: index,
           items: bottomBarItems,
           type: BottomNavigationBarType.shifting,
       ),

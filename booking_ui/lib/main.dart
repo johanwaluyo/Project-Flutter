@@ -16,7 +16,9 @@ ThemeData appTheme = ThemeData(
   fontFamily: 'Oxygen'
 );
 
+int menuItemNo = 0;
 List<String> location = ['Tg Balai Karimun (TBK)','Batam (BTM)'];
+
 
 class HomeScreen extends StatelessWidget{
   @override
