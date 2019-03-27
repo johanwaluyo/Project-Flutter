@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lzcarwash/pages/grid_listview.dart';
 import 'package:lzcarwash/pages/tiles.dart';
+import 'package:lzcarwash/pages/form.dart';
+import 'package:lzcarwash/pages/loading.dart';
 
 void main() => runApp(MaterialApp(
   home:MyApp(),
@@ -21,8 +23,8 @@ class _MyAppState extends State<MyApp> {
   List<Widget> pages = [
     GridListView(),
     Tiles(),
-    Container(color: Colors.lightBlue,),
-    Container(color: Colors.orangeAccent,),
+    Forms(),
+    Loader(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,10 +42,10 @@ class _MyAppState extends State<MyApp> {
         },
         currentIndex: index ,
         items: [
-          BottomNavigationBarItem(title: Text('Home',style: TextStyle(color: appTheme.primaryColor),), icon: Icon(Icons.home, color: appTheme.primaryColor,)),
-          BottomNavigationBarItem(title: Text('List',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.local_car_wash, color: appTheme.primaryColor,)),
-          BottomNavigationBarItem(title: Text('Data',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.desktop_mac, color: appTheme.primaryColor,)),
-          BottomNavigationBarItem(title: Text('Notification',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.notifications, color: appTheme.primaryColor,)),
+          BottomNavigationBarItem(title: Text('Grid List',style: TextStyle(color: appTheme.primaryColor),), icon: Icon(Icons.grid_on, color: appTheme.primaryColor,)),
+          BottomNavigationBarItem(title: Text('List',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.line_weight, color: appTheme.primaryColor,)),
+          BottomNavigationBarItem(title: Text('Form',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.library_books, color: appTheme.primaryColor,)),
+          BottomNavigationBarItem(title: Text('Animation',style: TextStyle(color: appTheme.primaryColor),),icon: Icon(Icons.play_circle_outline, color: appTheme.primaryColor,)),
         ],
       ),
       body: pages[index],
