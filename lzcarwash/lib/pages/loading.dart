@@ -69,71 +69,73 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin{
       width: 500.0,
       height: 500.0,
       child: Center(
-        child: RotationTransition(
-          turns: animation_rotation,
-          child: Stack(
-            children: <Widget>[
-              Dot(
-                radius: center_dot,
-                color: Colors.lightGreen,
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(pi/4),radius * sin(pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.red,
+        child: Container(
+          child: RotationTransition(
+            turns: animation_rotation,
+            child: Stack(
+              children: <Widget>[
+                Dot(
+                  radius: center_dot,
+                  color: Colors.lightGreen,
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(2*pi/4),radius * sin(2*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.redAccent,
+                Transform.translate(
+                  offset: Offset(radius * cos(pi/4),radius * sin(pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(3*pi/4),radius * sin(3*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.orange,
+                Transform.translate(
+                  offset: Offset(radius * cos(2*pi/4),radius * sin(2*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.redAccent,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(4*pi/4),radius * sin(4*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.deepOrange,
+                Transform.translate(
+                  offset: Offset(radius * cos(3*pi/4),radius * sin(3*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.orange,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(5*pi/4),radius * sin(5*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.lightBlue,
+                Transform.translate(
+                  offset: Offset(radius * cos(4*pi/4),radius * sin(4*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.deepOrange,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(6*pi/4),radius * sin(6*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.blueAccent,
+                Transform.translate(
+                  offset: Offset(radius * cos(5*pi/4),radius * sin(5*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.lightBlue,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(7*pi/4),radius * sin(7*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.green,
+                Transform.translate(
+                  offset: Offset(radius * cos(6*pi/4),radius * sin(6*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.blueAccent,
+                  ),
                 ),
-              ),
-              Transform.translate(
-                offset: Offset(radius * cos(8*pi/4),radius * sin(8*pi/4)),
-                child: Dot(
-                  radius: small_dot,
-                  color: Colors.orangeAccent,
+                Transform.translate(
+                  offset: Offset(radius * cos(7*pi/4),radius * sin(7*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.green,
+                  ),
                 ),
-              ),
-            ],
+                Transform.translate(
+                  offset: Offset(radius * cos(8*pi/4),radius * sin(8*pi/4)),
+                  child: Dot(
+                    radius: small_dot,
+                    color: Colors.orangeAccent,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
