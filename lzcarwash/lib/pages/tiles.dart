@@ -64,18 +64,18 @@ List<MyTile> listOfTiles = <MyTile>[
       'Software',
       <MyTile>[
         new MyTile('Java'),
-        new MyTile('C++'),
-        new MyTile('.NET'),
+        new MyTile('Flutter'),
+        new MyTile('Dart'),
       ],
     ),
     new MyTile('Hardware')
   ]
   ),
   new MyTile(
-    'Cars',
+    'Google',
     <MyTile>[
-      new MyTile('Tesla'),
-      new MyTile('Toyota'),
+      new MyTile('FireBase'),
+      new MyTile('GoogleCloud'),
     ],
   ),
 ];

@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appTheme.primaryColor,
-        title: Text('lzCarWash',style: TextStyle(color: Colors.white),),
+        title: Text('Flutter Component',style: TextStyle(color: Colors.white),),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
