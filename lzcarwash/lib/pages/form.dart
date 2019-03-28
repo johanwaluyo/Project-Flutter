@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Forms extends StatefulWidget {
   @override
@@ -98,8 +100,23 @@ void _onchangedRadio(int val){
 
 int state = 0 ;
 String dropDownVal=null;
+
+var imageURLs = [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Culinary_fruits_front_view.jpg/220px-Culinary_fruits_front_view.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/220px-Pineapple_and_cross_section.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Peanut_9417.jpg/220px-Peanut_9417.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flower_garden_in_Ushuaia_%285542996965%29.jpg/220px-Flower_garden_in_Ushuaia_%285542996965%29.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Various_legumes.jpg/220px-Various_legumes.jpg'
+  ];
+  var selectedImageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    final _cachedImage = new CachedNetworkImage(
+      placeholder: new CircularProgressIndicator(),
+      imageUrl: imageURLs[selectedImageIndex],
+      height: 300.0,
+    );
     loadData();
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -287,8 +304,43 @@ String dropDownVal=null;
               ],
             ),
           ),
-
-          
+        Column(
+          children: <Widget>[
+            new Stack(
+              children: <Widget>[
+                new Center(
+                  child: _cachedImage,
+                )
+              ],
+            ),
+          ],
+        ),
+          new Row(
+              children: <Widget>[
+                new Expanded(
+                    child: new IconButton(
+                        icon :new Icon(Icons.arrow_back),
+                        onPressed: (){
+                          setState(() {
+                            selectedImageIndex=selectedImageIndex<=0?
+                                                selectedImageIndex:selectedImageIndex-1;
+                          });
+                        }
+                    )
+                ),
+                new Expanded(
+                    child: new IconButton(
+                        icon :new Icon(Icons.arrow_forward),
+                        onPressed: (){
+                          setState(() {
+                            selectedImageIndex = (selectedImageIndex >= imageURLs.length - 1) ?
+                                    selectedImageIndex : selectedImageIndex + 1;
+                          });
+                        }
+                    )
+                ),
+              ],
+            )
         ],
       ),
     );

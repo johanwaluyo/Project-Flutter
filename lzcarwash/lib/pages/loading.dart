@@ -13,11 +13,11 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin{
   Animation<double> animation_radius_in;
   Animation<double> animation_radius_out;
   
-  final double initialRadius = 30;
+  final double initialRadius = 50;
 
   double radius = 0.0;
-  double small_dot = 15.0;
-  double center_dot = 50.0;
+  double small_dot = 10.0;
+  double center_dot = 0.0;
 
   @override
   void initState(){
