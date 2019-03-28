@@ -9,7 +9,7 @@ class Forms extends StatefulWidget {
 
 class _FormsState extends State<Forms> with SingleTickerProviderStateMixin {
 List<DropdownMenuItem<String>> listDropDown =[];
-List<String> country=["Singapore","Indonesia","Malaysia"];
+List<String> country=["Singapore","Indonesia","Malaysia","Thailan","Cambodia","Vietnam","Japan","Korea"];
 void loadData(){
   listDropDown =[];
   listDropDown = country.map((val) => new DropdownMenuItem<String>(
@@ -105,10 +105,9 @@ var imageURLs = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Culinary_fruits_front_view.jpg/220px-Culinary_fruits_front_view.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/220px-Pineapple_and_cross_section.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Peanut_9417.jpg/220px-Peanut_9417.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flower_garden_in_Ushuaia_%285542996965%29.jpg/220px-Flower_garden_in_Ushuaia_%285542996965%29.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Various_legumes.jpg/220px-Various_legumes.jpg'
-  ];
-  var selectedImageIndex = 0;
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flower_garden_in_Ushuaia_%285542996965%29.jpg/220px-Flower_garden_in_Ushuaia_%285542996965%29.jpg'
+];
+var selectedImageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -304,18 +303,21 @@ var imageURLs = [
               ],
             ),
           ),
-        Column(
-          children: <Widget>[
-            new Stack(
-              children: <Widget>[
-                new Center(
-                  child: _cachedImage,
-                )
-              ],
-            ),
-          ],
+        Container(
+          child: Column(
+            children: <Widget>[
+              new Stack(
+                children: <Widget>[
+                  new Center(
+                    child: _cachedImage,
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-          new Row(
+        Container(
+          child: new Row(
               children: <Widget>[
                 new Expanded(
                     child: new IconButton(
@@ -340,7 +342,9 @@ var imageURLs = [
                     )
                 ),
               ],
-            )
+            ),
+        ),
+
         ],
       ),
     );

@@ -3,9 +3,10 @@ import 'package:lzcarwash/pages/grid_listview.dart';
 import 'package:lzcarwash/pages/tiles.dart';
 import 'package:lzcarwash/pages/form.dart';
 import 'package:lzcarwash/pages/loading.dart';
+import 'package:lzcarwash/pages/notification.dart';
 
 void main() => runApp(MaterialApp(
-  home:MyApp(),
+  home:MyApp(), 
   theme: appTheme,
 ));
 
@@ -26,9 +27,50 @@ class _MyAppState extends State<MyApp> {
     Forms(),
     Loader(),
   ];
+
+ 
+     var title = '';//title is "mutable property"
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+
+    return new Scaffold(
+      drawer: new Drawer(
+            child: new ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                new DrawerHeader(
+                  child: new Container(
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        new Image.asset('assets/images/dev.png',height: 50.0,width: 50.0,),
+                        new Text("Profile Name",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                        new Text("Title",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                  ),
+                  decoration: new BoxDecoration(
+                      color: Colors.lightGreen,
+                  ),
+                ),
+                new ListTile(
+                  leading: new Icon(Icons.notifications),
+                  title: new Text("Notifications"),
+                  onTap: (){
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(
+                        builder: (context) => Notifications()
+                      )
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
       appBar: AppBar(
         backgroundColor: appTheme.primaryColor,
         title: Text('Flutter Component',style: TextStyle(color: Colors.white),),
