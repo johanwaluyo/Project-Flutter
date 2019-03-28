@@ -153,20 +153,37 @@ String dropDownVal=null;
          Container(
            child: Column(
              children: <Widget>[
-               new Text("Date Selected : ${_date.toString()}"),
-               new RaisedButton(
-                 child: new Text("Selected Date"),
-                 onPressed: (){
-                   _selectedDate(context);
-                 },
+               new Column(
+                 children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      new Text("Date Selected : ${_date.toString()}"),
+                      new IconButton(
+                        icon: Icon(Icons.date_range),
+                        onPressed: (){
+                        _selectedDate(context);
+                          },
+                      ),
+                    ],
+                  ),
+                 ],
+                 
                ),
                new Text(" "),
-               new Text("Time Selected : ${_time.toString()}"),
-               new RaisedButton(
-                 child: new Text("Selected Time"),
-                 onPressed: (){
-                   _selectedTime(context);
-                 },
+               new Column(
+                 children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      new Text("Time Selected : ${_time.toString()}"),
+                      new IconButton(
+                        icon: Icon(Icons.access_time),
+                        onPressed: (){
+                        _selectedTime(context);
+                          },
+                      ),
+                    ],
+                  ),
+                 ],
                ),
              ],
            ),
@@ -271,6 +288,7 @@ String dropDownVal=null;
             ),
           ),
 
+          
         ],
       ),
     );
