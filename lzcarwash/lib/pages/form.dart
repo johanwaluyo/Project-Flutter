@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Forms extends StatefulWidget {
@@ -7,7 +6,16 @@ class Forms extends StatefulWidget {
   _FormsState createState() => _FormsState();
 }
 
+enum DialogAction{
+  yes,
+  no,
+  maybe
+}
+
 class _FormsState extends State<Forms> with SingleTickerProviderStateMixin {
+  
+  
+
 List<DropdownMenuItem<String>> listDropDown =[];
 List<String> country=["Singapore","Indonesia","Malaysia","Thailan","Cambodia","Vietnam","Japan","Korea"];
 void loadData(){
@@ -108,6 +116,34 @@ var imageURLs = [
     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Flower_garden_in_Ushuaia_%285542996965%29.jpg/220px-Flower_garden_in_Ushuaia_%285542996965%29.jpg'
 ];
 var selectedImageIndex = 0;
+
+void _dialogResult(DialogAction val){
+  print("You Selected $val");
+  Navigator.pop(context);
+}
+
+void _showAlert(String val){
+  if (val.isEmpty)return;
+  
+  AlertDialog dialog =  new AlertDialog(
+                          backgroundColor: Colors.lightGreen,
+                          content: Text(val),
+                          contentTextStyle: TextStyle(fontWeight: FontWeight.bold),
+                          actions: <Widget>[
+                            new FlatButton(onPressed: (){
+                              _dialogResult(DialogAction.yes);
+                            },child: new Text("Yes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),),
+                            
+                            new FlatButton(onPressed: (){
+                              _dialogResult(DialogAction.no);
+                            },child: new Text("No",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),),
+                            
+                          ],
+                        );
+  showDialog(context: context,child: dialog);
+}
+String _textAlert = 'Error Alert Dialog';
+
 
   @override
   Widget build(BuildContext context) {
@@ -344,9 +380,28 @@ var selectedImageIndex = 0;
               ],
             ),
         ),
-
+       Container(
+         child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text("Error Alert Click Icon : "),
+                      IconButton(
+                        icon: Icon(Icons.error),
+                        onPressed: (){
+                          _showAlert(_textAlert);
+                        },
+                      )
+                    ],
+                  ),
+                ],
+              ),
+       ),
+        
         ],
       ),
     );
   }
 }
+
+
