@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter/animation.dart';
+
 class Loader extends StatefulWidget {
   @override
   _LoaderState createState() => _LoaderState();
