@@ -12,6 +12,9 @@ enum DialogAction{
   maybe
 }
 
+
+const TextStyle formTextStyle =TextStyle(color: Colors.white,fontSize: 16.0);
+
 class _FormsState extends State<Forms> with SingleTickerProviderStateMixin {
   
   
@@ -117,8 +120,21 @@ var imageURLs = [
 ];
 var selectedImageIndex = 0;
 
+String _isError='';
 void _dialogResult(DialogAction val){
   print("You Selected $val");
+  setState(() {
+    switch (val) {
+      case DialogAction.yes : _isError='yes';
+      break;
+      case DialogAction.no : _isError='no';
+      break;
+        
+        break;
+      default:
+    }
+     
+  });
   Navigator.pop(context);
 }
 
@@ -128,21 +144,60 @@ void _showAlert(String val){
   AlertDialog dialog =  new AlertDialog(
                           backgroundColor: Colors.lightGreen,
                           content: Text(val),
-                          contentTextStyle: TextStyle(fontWeight: FontWeight.bold),
+                          contentTextStyle: formTextStyle,
                           actions: <Widget>[
                             new FlatButton(onPressed: (){
                               _dialogResult(DialogAction.yes);
-                            },child: new Text("Yes",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),),
+                            },child: new Text("Yes",style: formTextStyle),),
                             
                             new FlatButton(onPressed: (){
                               _dialogResult(DialogAction.no);
-                            },child: new Text("No",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),),
+                            },child: new Text("No",style: formTextStyle),),
                             
                           ],
                         );
   showDialog(context: context,child: dialog);
 }
 String _textAlert = 'Error Alert Dialog';
+
+String _answer = '';
+void _setAnswer(String val){
+  setState(() {
+   _answer=val; 
+  });
+}
+Future<Null> _askUser() async{
+  switch (
+    await showDialog(
+      context: context ,
+      child: new SimpleDialog(
+        backgroundColor: Colors.lightGreen,
+          title: new Text("Do you like This Tutorial ?",style: formTextStyle,),
+          children: <Widget>[
+            new SimpleDialogOption(
+              onPressed: (){
+                Navigator.pop(context,DialogAction.yes);
+              },
+              child: const Text("Yes",style: formTextStyle),
+            ),
+            new SimpleDialogOption(
+              onPressed: (){
+                Navigator.pop(context,DialogAction.no);
+              },
+              child: const Text("No",style: formTextStyle),
+            ),
+          ],
+      ),
+      )
+  ) {
+    case DialogAction.yes : _setAnswer('yes');
+      break;
+    case DialogAction.no : _setAnswer('no');
+      break;
+    default:
+  }
+}
+
 
 
   @override
@@ -385,7 +440,7 @@ String _textAlert = 'Error Alert Dialog';
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Error Alert Click Icon : "),
+                      Text("Your AlertDialog : ${_isError}"),
                       IconButton(
                         icon: Icon(Icons.error),
                         onPressed: (){
@@ -397,7 +452,21 @@ String _textAlert = 'Error Alert Dialog';
                 ],
               ),
        ),
-        
+        Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                new Text("Your SimpleDialog : ${_answer}"),
+                new IconButton(
+                  icon: Icon(Icons.question_answer),
+                  onPressed: (){
+                    _askUser();
+                  },
+                )
+              ],
+            )
+          ],
+        )
         ],
       ),
     );
