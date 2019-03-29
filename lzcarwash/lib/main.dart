@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lzcarwash/pages/grid_listview.dart';
-import 'package:lzcarwash/pages/tiles.dart';
-import 'package:lzcarwash/pages/form.dart';
-import 'package:lzcarwash/pages/loading.dart';
-import 'package:lzcarwash/pages/notification.dart';
+
+//own library
+import 'pages/pages.dart';
 
 void main() => runApp(MaterialApp(
   home:MyApp(), 
@@ -12,6 +10,7 @@ void main() => runApp(MaterialApp(
 
 ThemeData appTheme = ThemeData(
   primaryColor: Colors.lightGreen,
+  
 );
 
 class MyApp extends StatefulWidget {
@@ -20,6 +19,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String shackBarTextGlobal = '';
+  void _onChangeSnackBar(String val){
+    setState(() {
+      shackBarTextGlobal=val; 
+    });
+  }
+  void _showSnackBar(String val){
+    if(val.isEmpty) return;
+    _scaffoldKey.currentState.showSnackBar(
+      new SnackBar(
+        content: new Text(val,style: TextStyle(fontWeight: FontWeight.bold),),
+        duration: Duration(seconds: 5),
+        backgroundColor: Colors.lightGreen,
+        action: SnackBarAction(
+          label: "Close",
+          textColor: Colors.white,
+          onPressed: (){
+            print("Close press");
+          },
+        ),
+      ),
+    );
+  }
   int index = 0 ;
   List<Widget> pages = [
     GridListView(),
@@ -27,15 +50,11 @@ class _MyAppState extends State<MyApp> {
     Forms(),
     Loader(),
   ];
-
- 
-     var title = '';//title is "mutable property"
-
+  
   @override
   Widget build(BuildContext context) {
-
-
     return new Scaffold(
+      key: _scaffoldKey,
       drawer: new Drawer(
             child: new ListView(
               padding: EdgeInsets.zero,
@@ -74,6 +93,11 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(
         backgroundColor: appTheme.primaryColor,
         title: Text('Flutter Component',style: TextStyle(color: Colors.white),),
+        actions: <Widget>[
+          IconButton(icon: new Icon(Icons.info),onPressed: (){
+            _showSnackBar("Snack Bar Text Here");
+          },)
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
